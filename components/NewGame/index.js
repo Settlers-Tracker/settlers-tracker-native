@@ -1,18 +1,25 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Header, Input } from "react-native-elements";
+import { StyleSheet, Input, View, Text } from "react-native";
+import { Header, FormInput, Button, InputGroup } from "react-native-elements";
 
 export default class NewGame extends Component {
   state = {
     addPlayerName: "",
     addPlayerColor: "",
-    players: [],
-    victoryPoints: 10
+    players: ["Ross", "Pete"],
+    victoryPoints: 10,
+    playerName: ""
   };
 
   handleInputChange = e => {
     const addPlayerName = e.target.value;
     this.setState({ addPlayerName });
+  };
+  buttonPress = e => {
+    this.setState({ addPlayerName });
+  };
+  updatePlayerName = e => {
+    this.setState({ playerName: e.target.value });
   };
 
   render() {
@@ -27,11 +34,13 @@ export default class NewGame extends Component {
             style: { color: "#fff" }
           }}
         />
-        <Input
-          placeholder="Pete"
-          value={this.state.addPlayerName}
-          onChangeText={this.handleInputChange}
+        <FormInput
+          placeholder="BASIC INPUT"
+          value={this.state.playerName}
+          onChangeText={text => this.setState({ playerName: text })}
         />
+        <Button onClick={this.addPlayer} title="Add Player" />
+        {this.state.players.map(player => <Text> {player} </Text>)}
       </View>
     );
   }

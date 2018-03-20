@@ -75,19 +75,15 @@ export default class NewGame extends Component {
       players
     });
   };
+  startGame = () => {
+    this.props.updatePlayers(this.state.players, "gameInProgress");
+  };
 
   render() {
     // const { addPlayerName } = this.state;
 
     return (
       <View>
-        <Header
-          leftComponent={{ icon: "menu", color: "#fff" }}
-          centerComponent={{
-            text: "Settlers Tracker",
-            style: { color: "#fff" }
-          }}
-        />
         <View style={{ display: "flex", flexDirection: "row" }}>
           <FormInput
             containerStyle={{ width: "60%" }}
@@ -95,10 +91,8 @@ export default class NewGame extends Component {
             value={this.state.playerName}
             onChangeText={text => this.setState({ playerName: text })}
           />
-          {/* <Icon raised name="add" onPress={this.addPlayer} /> */}
           <Button
             disabled={this.state.playerName.length === 0}
-            borderRadius="100%"
             buttonStyle={{ width: 60 }}
             containerViewStyle={{ borderRadius: "100%", width: 60 }}
             icon={{ name: "add" }}

@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import { StyleSheet, Input, View, Text } from "react-native";
+import { StyleSheet, Input, View } from "react-native";
 import {
-  Icon,
   Header,
   FormInput,
-  Button,
   InputGroup,
   FormValidationMessage
 } from "react-native-elements";
+import { Button, Icon, Text } from "native-base";
 import PlayerList from "./PlayerList";
 
 export default class NewGame extends Component {
@@ -24,12 +23,15 @@ export default class NewGame extends Component {
     const addPlayerName = e.target.value;
     this.setState({ addPlayerName });
   };
+
   buttonPress = e => {
     this.setState({ addPlayerName });
   };
+
   updatePlayerName = e => {
     this.setState({ playerName: e.target.value });
   };
+
   addPlayer = () => {
     let { players, playerName } = this.state;
     let error = null;
@@ -45,28 +47,28 @@ export default class NewGame extends Component {
       error
     });
   };
+
   movePlayerUp = player => {
     let { players } = this.state;
     let i = players.indexOf(player);
     console.log("index: ", i);
     if (i > 0) {
-      console.log("made it in");
       [players[i], players[i - 1]] = [players[i - 1], players[i]];
     }
     this.setState({ players });
     console.log(players);
   };
+
   movePlayerDown = player => {
     let { players } = this.state;
     let i = players.indexOf(player);
     console.log("index: ", i);
     if (i < players.length - 1) {
-      console.log("made it in");
       [players[i], players[i + 1]] = [players[i + 1], players[i]];
     }
     this.setState({ players });
-    console.log(players);
   };
+
   deletePlayer = player => {
     let { players } = this.state;
     let i = players.indexOf(player);
@@ -93,13 +95,11 @@ export default class NewGame extends Component {
           />
           <Button
             disabled={this.state.playerName.length === 0}
-            buttonStyle={{ width: 60 }}
-            containerViewStyle={{ borderRadius: "100%", width: 60 }}
-            icon={{ name: "add" }}
+            // buttonStyle={{ width: 60 }}
             onPress={this.addPlayer}
-            raised
-            rounded
-          />
+          >
+            <Icon name="add" />
+          </Button>
         </View>
         {this.state.error && (
           <FormValidationMessage>{this.state.error}</FormValidationMessage>

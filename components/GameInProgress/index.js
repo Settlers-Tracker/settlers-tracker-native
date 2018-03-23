@@ -4,12 +4,11 @@ import {
   Icon,
   Header,
   FormInput,
-  Button,
   InputGroup,
   FormValidationMessage,
   Tile
 } from "react-native-elements";
-import { Container, Content, List, ListItem, Text } from "native-base";
+import { Button, Container, Content, List, ListItem, Text } from "native-base";
 
 export default class GameInProgress extends Component {
   state = {
@@ -20,7 +19,7 @@ export default class GameInProgress extends Component {
     error: null
   };
   componentDidMount = () => {
-    let players = this.props.players;
+    let { players } = this.props;
     players = players.map(player => {
       return {
         victoryPoints: 2,
@@ -28,7 +27,7 @@ export default class GameInProgress extends Component {
         roadLength: 1,
         settlements: 2,
         cities: 0,
-        playerName: player
+        name: player
       };
     });
     this.setState({ players });
@@ -40,8 +39,8 @@ export default class GameInProgress extends Component {
         <List>
           {this.state.players.map(player => {
             return (
-              <ListItem title="testing">
-                <Text> {player.playerName} </Text>
+              <ListItem title="testing" key={player.name}>
+                <Text> {player.name} </Text>
               </ListItem>
             );
           })}

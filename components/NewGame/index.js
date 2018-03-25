@@ -95,7 +95,7 @@ export default class NewGame extends Component {
           />
           <Button
             disabled={this.state.playerName.length === 0}
-            // buttonStyle={{ width: 60 }}
+            style={{ borderRadius: 60 }}
             onPress={this.addPlayer}
           >
             <Icon name="add" />
@@ -110,7 +110,9 @@ export default class NewGame extends Component {
           movePlayerDown={this.movePlayerDown}
           deletePlayer={this.deletePlayer}
         />
-        <Button onPress={this.startGame} title="Start Game" />
+        <Button onPress={this.startGame}>
+          <Text> Start Game </Text>
+        </Button>
       </View>
     );
   }

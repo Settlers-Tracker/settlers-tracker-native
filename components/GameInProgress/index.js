@@ -44,9 +44,6 @@ export default class GameInProgress extends Component {
               </ListItem>
             );
           })}
-          <ListItem title="testing">
-            <Text> Testing </Text>
-          </ListItem>
         </List>
       </View>
     );
